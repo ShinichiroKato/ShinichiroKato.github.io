@@ -1,0 +1,32 @@
+# neutral は、言語が決まらないページ（振り分け、404）のために日英を併記する。
+ja:
+  lang_name: 日本語
+  locale: ja_JP
+  site_name: Shinichiro Kato
+  nav_label: サイト
+  skip: 本文へ移動
+  support: サポート
+  privacy: プライバシーポリシー
+  app_store: App Storeからダウンロード
+  app_store_region: jp
+  app_store_badge: ja-jp
+  app_store_badge_width: 109
+  qr_code: App StoreのQRコード
+en:
+  lang_name: English
+  locale: en_US
+  site_name: Shinichiro Kato
+  nav_label: Site
+  skip: Skip to main content
+  support: Support
+  privacy: Privacy Policy
+  app_store: Download on the App Store
+  app_store_region: us
+  app_store_badge: en-us
+  app_store_badge_width: 120
+  qr_code: QR code for the App Store
+neutral:
+  locale: ja_JP
+  site_name: Shinichiro Kato
+  nav_label: サイト
+  skip: 本文へ移動

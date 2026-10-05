@@ -1,0 +1,14 @@
+{%- comment -%}
+  rel="me" は、リンク先のアカウントが本人のものであることを示す（Mastodon などの本人確認に使われる）。
+  アイコンは飾りなので読み上げない（サービス名を文字で出す）。
+{%- endcomment %}
+<ul class="cards cards-small">
+{%- for link in site.data.links %}
+  <li>
+    <a class="card" href="{{ link.url }}" rel="me">
+      <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="{{ link.icon }}"/></svg>
+      <span{% unless page.lang == "en" %} lang="en"{% endunless %}><span class="card-name">{{ link.name }}</span><span class="card-sub">{{ link.handle }}</span></span>
+    </a>
+  </li>
+{%- endfor %}
+</ul>

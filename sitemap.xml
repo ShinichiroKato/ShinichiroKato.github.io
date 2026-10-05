@@ -1,0 +1,24 @@
+---
+layout: null
+---
+<?xml version="1.0" encoding="UTF-8"?>
+{%- comment -%}
+  振り分けのページは移動するだけなので載せない。
+  もう一方の言語のページは _layouts/default.html と同じ規則で探すので、変えるときは両方を直す。
+{%- endcomment %}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+{%- assign lang_pages = site.pages | where_exp: "p", "p.lang" | sort: "url" %}
+{%- for p in lang_pages %}
+  {%- assign path = p.url | slice: 3, p.url.size -%}
+  {%- if p.lang == "ja" -%}{%- assign other_url = "/en" | append: path -%}{%- else -%}{%- assign other_url = "/ja" | append: path -%}{%- endif -%}
+  {%- assign counterpart = site.pages | where: "url", other_url | first %}
+  <url>
+    <loc>{{ site.url }}{{ p.url }}</loc>
+    {%- if counterpart %}
+    <xhtml:link rel="alternate" hreflang="ja" href="{{ site.url }}/ja{{ path }}"/>
+    <xhtml:link rel="alternate" hreflang="en" href="{{ site.url }}/en{{ path }}"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ path }}"/>
+    {%- endif %}
+  </url>
+{%- endfor %}
+</urlset>

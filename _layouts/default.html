@@ -1,0 +1,67 @@
+<!doctype html>
+{%- comment -%}
+  front matter：
+    lang          ja か en（404 では書かない）
+    title         ページの名前（サイト名は書かない。レイアウトが付ける）
+    description   検索結果や共有したときの説明（404 以外は必ず書く）
+    heading       ポリシーとサポートの見出し（アプリのページで書かなければ紹介ページになる）
+    cards         true ならカードを並べるページにする（プロフィール、アプリ一覧）
+    image         共有したときの画像（任意）
+{%- endcomment -%}
+{%- assign t = site.data.ui[page.lang] | default: site.data.ui.neutral -%}
+{%- if page.lang -%}
+  {%- comment -%} sitemap.xml も同じ規則で探すので、変えるときは両方を直す {%- endcomment -%}
+  {%- assign path = page.url | slice: 3, page.url.size -%}
+  {%- if page.lang == "ja" -%}{%- assign other = "en" -%}{%- else -%}{%- assign other = "ja" -%}{%- endif -%}
+  {%- assign other_url = "/" | append: other | append: path -%}
+  {%- assign counterpart = site.pages | where: "url", other_url | first -%}
+  {%- assign parts = page.url | split: "/" -%}
+  {%- if parts[2] == "apps" and parts[3] -%}
+    {%- assign app = site.data.apps | where: "slug", parts[3] | first -%}
+  {%- endif -%}
+{%- endif -%}
+{%- if counterpart -%}{%- assign head_alt_path = path -%}{%- endif %}
+<html lang="{{ page.lang | default: 'ja' }}">
+<head>
+{% include head.html %}
+  {%- if app.app_store_id and page.heading == nil %}
+  <meta name="apple-itunes-app" content="app-id={{ app.app_store_id }}">
+  {%- endif %}
+</head>
+<body{% if page.cards %} class="grouped"{% endif %}>
+  {% include header.html other_url=counterpart.url %}
+  <main id="main" tabindex="-1">
+    {%- if app and page.heading %}
+    <a class="app-title" href="/{{ page.lang }}/apps/{{ app.slug }}/">
+      <img class="app-icon" src="/apps/{{ app.slug }}/icon.png" alt="" width="40" height="40">
+      <p{% unless page.lang == "en" %} lang="en"{% endunless %}>{{ app.name }}</p>
+    </a>
+    <h1>{{ page.heading }}</h1>
+    {%- elsif app %}
+    <div class="hero">
+      <img class="app-icon" src="/apps/{{ app.slug }}/icon.png" alt="" width="128" height="128">
+      <h1{% unless page.lang == "en" %} lang="en"{% endunless %}>{{ app.name }}</h1>
+      <p>{{ app.subtitle[page.lang] }}</p>
+      {%- if app.app_store_id %}
+      {%- comment -%} Apple のマーケティングツールが出す埋め込みと同じ形にする。itsct で、バッジと QR コードのどちらから来たかが App Store Connect でわかる {%- endcomment -%}
+      {%- assign badge = "https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/" %}
+      <a class="badge" href="https://apps.apple.com/{{ t.app_store_region }}/app/id{{ app.app_store_id }}?itscg=30200&amp;itsct=apps_box_badge&amp;mttnsubad={{ app.app_store_id }}">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="{{ badge }}white/{{ t.app_store_badge }}">
+          <img src="{{ badge }}black/{{ t.app_store_badge }}" alt="{{ t.app_store }}" width="{{ t.app_store_badge_width }}" height="40">
+        </picture>
+      </a>
+      <img class="qr" src="/apps/{{ app.slug }}/qr.svg" alt="{{ t.qr_code }}" width="96" height="96">
+      {%- endif %}
+    </div>
+    {%- endif %}
+{{ content }}
+    {%- if app and page.heading == nil %}
+    <ul class="choices">
+      <li><a href="/{{ page.lang }}/apps/{{ app.slug }}/support/">{{ t.support }}</a></li>
+      <li><a href="/{{ page.lang }}/apps/{{ app.slug }}/privacy/">{{ t.privacy }}</a></li>
+    </ul>
+    {%- endif %}
+  </main>
+</body>
+</html>

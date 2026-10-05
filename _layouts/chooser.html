@@ -1,0 +1,61 @@
+<!doctype html>
+{%- comment -%}
+  言語を含まない URL（/、/apps/<slug>/ など）が共有されても、読める言語のページを出すため。
+  JavaScript が動かないときのために、言語ごとのリンクも出す。
+  URL を共有されることがあるので、OGP も出す。
+  front matter：
+    title               <title> と共有したときの名前（日英で違えば「日本語 / English」と併記し、同じなら 1 つだけ書く）
+    description         共有したときの説明（任意。書かなければ、日英のページの description を「日本語 / English」でつなぐ）
+    image               共有したときの画像（任意）
+    title_ja、title_en  見出し
+{%- endcomment -%}
+{%- assign parts = page.url | split: "/" -%}
+{%- if parts[1] == "apps" and parts[2] -%}
+  {%- assign app = site.data.apps | where: "slug", parts[2] | first -%}
+{%- endif -%}
+{%- assign ja_url = "/ja" | append: page.url -%}
+{%- assign en_url = "/en" | append: page.url -%}
+{%- assign ja_page = site.pages | where: "url", ja_url | first -%}
+{%- assign en_page = site.pages | where: "url", en_url | first -%}
+{%- if ja_page.description and en_page.description -%}
+  {%- assign pair_description = ja_page.description | append: " / " | append: en_page.description -%}
+{%- endif -%}
+{%- assign head_description = page.description | default: pair_description | default: page.title -%}
+{%- assign head_alt_path = page.url %}
+<html lang="ja">
+<head>
+  <script>
+    (function () {
+      var langs = navigator.languages || [navigator.language || ""];
+      var lang = "en";
+      for (var i = 0; i < langs.length; i++) {
+        var l = String(langs[i]).toLowerCase();
+        if (l.indexOf("ja") === 0) { lang = "ja"; break; }
+        if (l.indexOf("en") === 0) { lang = "en"; break; }
+      }
+      // 共有元を示すパラメーターなどを引き継ぐ
+      location.replace("/" + lang + "{{ page.url }}" + location.search + location.hash);
+    })();
+  </script>
+{% include head.html %}
+</head>
+<body>
+  {% include header.html %}
+  <main id="main" tabindex="-1">
+    {%- if app %}
+    {%- assign app_url = "/apps/" | append: app.slug | append: "/" %}
+    <a class="app-title" href="{{ app_url }}"{% if page.url == app_url %} aria-current="page"{% endif %}>
+      <img class="app-icon" src="/apps/{{ app.slug }}/icon.png" alt="" width="40" height="40">
+      <p lang="en">{{ app.name }}</p>
+    </a>
+    {%- endif %}
+    {%- comment -%} 日英が同じ（名前など）とき、同じ語を 2 回読み上げさせない {%- endcomment %}
+    <h1>{% if page.title_en == page.title_ja %}<span lang="en">{{ page.title_en }}</span>{% else %}{{ page.title_ja }}<br><span lang="en">{{ page.title_en }}</span>{% endif %}</h1>
+
+    <ul class="choices">
+      <li><a href="/ja{{ page.url }}" hreflang="ja">日本語</a></li>
+      <li><a href="/en{{ page.url }}" hreflang="en" lang="en">English</a></li>
+    </ul>
+  </main>
+</body>
+</html>

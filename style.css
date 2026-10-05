@@ -1,0 +1,487 @@
+/*
+  文字の大きさと、文字まわりの余白（見出しや段落の間隔、本文の幅）は rem で書く。
+  ブラウザーや iPhone の文字サイズの設定に合わせて、文字と一緒に大きくなる。1rem = 16px（iPhone と iPad では下の指定に従う）。
+  部品の寸法（カードの内側の余白、角丸、押せる範囲）は px で書く。
+*/
+
+:root {
+  --bg: #ffffff;
+  --text: #1d1d1f;
+  --muted: #6e6e73;
+  --line: #d2d2d7;
+  --link: #0066cc;
+  --bg-grouped: #f5f5f7;
+  --card: #ffffff;
+  --card-line: #e5e5ea;
+  --card-hover: #fafafa;
+
+  --font-text: 1.0625rem;
+  --font-lead: 1.3125rem;
+  --font-small: 0.875rem;
+
+  --measure: 41.25rem;
+  --gutter: 16px;
+
+  --gap: 12px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #000000;
+    --text: #f5f5f7;
+    --muted: #98989d;
+    --line: #424245;
+    --link: #2997ff;
+    --bg-grouped: #000000;
+    --card: #1c1c1e;
+    --card-line: #2c2c2e;
+    --card-hover: #2c2c2e;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+  font-size: var(--font-text);
+  line-height: 1.75;
+  overflow-wrap: break-word;
+}
+
+/*
+  iPhone と iPad の Safari では、設定の「文字サイズ」（Dynamic Type）に合わせて、ページ全体の文字の大きさを変える。
+  標準の文字サイズでは 1rem = 17px になり、本文は iOS の本文と同じ 17px になる。
+  macOS の Safari ではこの指定が 13px になるので、-webkit-touch-callout に対応する端末（iPhone と iPad）だけに効かせる。
+*/
+@supports (font: -apple-system-body) and (-webkit-touch-callout: none) {
+  html {
+    font: -apple-system-body;
+  }
+
+  body {
+    font-size: 1rem;
+  }
+}
+
+/* 語の途中で改行しないようにする。未対応のブラウザーでは無視されるだけなので、代わりの指定は要らない */
+:lang(ja) {
+  word-break: auto-phrase;
+}
+
+body:lang(en) {
+  line-height: 1.53;
+  letter-spacing: -0.01em;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+  text-underline-offset: 0.2em;
+}
+
+/*
+  文章の中のリンクは、色だけでなく下線でも見分けられるようにする（WCAG 1.4.1）。
+  線で区切った一覧とカードは文章ではないので除く。カードは下線の代わりに背景の色を変える。
+*/
+main :where(p, li) a:not(:where(.choices, .cards) a) {
+  text-decoration: underline;
+}
+
+a:not(.card):hover {
+  text-decoration: underline;
+}
+
+:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* 本文へ移動のリンク。キーボードでフォーカスしたときだけ見せる（WCAG 2.4.1） */
+
+.skip-link {
+  position: absolute;
+  top: 8px;
+  left: var(--gutter);
+  z-index: 1;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: var(--text);
+  color: var(--bg);
+  font-size: var(--font-small);
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+header,
+main {
+  max-width: calc(var(--measure) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+header {
+  padding-top: 8px;
+  font-size: var(--font-small);
+}
+
+main {
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+
+/* 本文へ移動で main にフォーカスが移ったとき、操作できない本文全体を輪郭線で囲まないようにする */
+main:focus {
+  outline: none;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 20px;
+}
+
+/* 押せる範囲を 24px 以上にする（WCAG 2.5.8） */
+nav a {
+  display: inline-block;
+  padding: 8px 0;
+}
+
+.site-name {
+  margin-right: auto;
+  color: var(--text);
+  font-size: var(--font-text);
+  font-weight: 600;
+}
+
+nav [aria-current="page"] {
+  color: var(--text);
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 600;
+}
+
+h1 {
+  margin: 0 0 2.5rem;
+  font-size: 2.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  margin: 2.5rem 0 0.75rem;
+  font-size: 1.5rem;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  margin: 1.5rem 0 0.25rem;
+  font-size: 1.1875rem;
+  line-height: 1.4;
+}
+
+h2 + h3 {
+  margin-top: 0;
+}
+
+@media (max-width: 600px) {
+  h1 {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+  }
+}
+
+p {
+  margin: 0 0 0.75rem;
+}
+
+ul {
+  margin: 0 0 0.75rem;
+  padding-left: 1.2em;
+}
+
+/* 導入文。ページの最初の段落に {: .lead} で付ける */
+.lead {
+  margin-bottom: 1.5rem;
+  color: var(--muted);
+  font-size: var(--font-lead);
+}
+
+/* 末尾の注記（施行日など）。最後の段落に {: .note} で付ける */
+.note {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: var(--font-small);
+}
+
+.choices {
+  padding: 0;
+  border-top: 1px solid var(--line);
+  list-style: none;
+}
+
+.choices a {
+  display: block;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+:is(p, ul) + .choices {
+  margin-top: 3rem;
+}
+
+/*
+  アプリのアイコン。白地のアイコンでも輪郭がわかるよう、角丸に沿って細い枠線を付ける。
+  アイコンの画像は Apple の角の形で書き出してあるので、枠線をその輪郭に合わせる。
+  よく挙げられる 22.37% は連続的な角丸での半径で、円弧に使うと枠線と画像の間にすき間が出る。
+  26.5% は、円弧で画像の輪郭に最も近くなる半径（ずれは 64px の表示で約 0.2px）。
+*/
+
+.app-icon {
+  border-radius: 26.5%;
+  box-shadow: 0 0 0 1px var(--card-line);
+}
+
+/* superellipse(1.45) で半径 33.5% にすると、画像の輪郭とほぼ重なる（ずれは 64px の表示で 0.1px 未満） */
+@supports (corner-shape: squircle) {
+  .app-icon {
+    border-radius: 33.5%;
+    corner-shape: superellipse(1.45);
+  }
+}
+
+.app-title {
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+  margin-bottom: 1rem;
+  color: inherit;
+}
+
+.app-title p {
+  margin: 0;
+  font-weight: 600;
+}
+
+/*
+  アプリの紹介ページとプロフィールの先頭。狭い画面では中央に縦に並べ、広い画面では App Store のように、アイコンの右に名前と入手のバッジを並べる。
+  QR コードは右端に置き、線で区切って脇役にする。
+  先頭の画像は、アプリのアイコンでもプロフィールの写真でも同じ位置に置く。
+*/
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.hero > :first-child {
+  margin-bottom: 0.75rem;
+}
+
+.hero h1 {
+  margin: 0;
+}
+
+.hero p {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--font-lead);
+  line-height: 1.4;
+}
+
+.badge {
+  margin-top: 1.25rem;
+}
+
+.badge,
+.badge img,
+.qr {
+  display: block;
+}
+
+.qr {
+  margin-top: 1.5rem;
+}
+
+/* QR コードはパソコンの画面を iPhone で読み取るためのものなので、iPhone と iPad では出さない */
+@media (hover: none) {
+  .qr {
+    display: none;
+  }
+}
+
+@media (min-width: 601px) {
+  /*
+    上下に伸びる空の行を置き、名前から入手のバッジまでをひとまとまりにしてアイコンの縦中央に寄せる。
+    空の行がないと、アイコンの高さが文字の行に割り振られ、バッジのないページで名前と説明が離れてしまう。
+  */
+  .hero {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: 1fr auto auto auto 1fr;
+    grid-template-areas:
+      "icon .     qr"
+      "icon name  qr"
+      "icon sub   qr"
+      "icon badge qr"
+      "icon .     qr";
+    column-gap: 24px;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+  }
+
+  .hero > :first-child {
+    grid-area: icon;
+    align-self: center;
+    margin: 0;
+  }
+
+  .hero h1 {
+    grid-area: name;
+  }
+
+  .hero p {
+    grid-area: sub;
+    margin-top: 0.25rem;
+  }
+
+  .badge {
+    grid-area: badge;
+    justify-self: start;
+    margin-top: 0.75rem;
+  }
+
+  .qr {
+    grid-area: qr;
+    align-self: center;
+    box-sizing: content-box;
+    margin: 0;
+    padding-left: 24px;
+    border-left: 1px solid var(--line);
+  }
+}
+
+/* 404 のページ。数字は画面の幅に合わせて大きくし、狭い iPhone でも 1 行に収まる上限で止める */
+
+.error {
+  padding: 5rem 0 3rem;
+  text-align: center;
+}
+
+.error h1 {
+  margin-bottom: 1rem;
+  font-size: clamp(7rem, 32vw, 15rem);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  /* letter-spacing は最後の字の後ろにも付き、中央からずれるので、同じ幅を左に足して打ち消す */
+  padding-left: 0.04em;
+}
+
+.error p {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--font-lead);
+}
+
+.grouped {
+  background: var(--bg-grouped);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: var(--gap);
+  margin: 0 0 0.75rem;
+  padding: 0;
+  list-style: none;
+}
+
+.cards-small {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+  height: 100%;
+  padding: 16px;
+  border: 1px solid var(--card-line);
+  border-radius: 34px;
+  background: var(--card);
+  color: var(--text);
+}
+
+/*
+  カードの角は、中の 64px のアプリのアイコンの輪郭を、余白と枠線の 17px だけ外へ広げた線に合わせる（Apple の concentric）。
+  外側の半径を「内側の半径＋余白」で決めると、この大きさのアイコンでは角が大きくなりすぎ、角で幅が広がる。
+  34px は円弧で最も近い値（ずれは 0.22px）。superellipse(1.15) で 36.5px にすると、ずれは 0.09px になる。
+  リンクのカードは中に角丸のアイコンを持たないが、同じページで角をそろえるために同じ値にする。
+  余白やアイコンの大きさを変えたときは、この値も計算し直す。
+*/
+@supports (corner-shape: squircle) {
+  .card {
+    border-radius: 36.5px;
+    corner-shape: superellipse(1.15);
+  }
+}
+
+.card:hover {
+  background: var(--card-hover);
+}
+
+.card img,
+.card svg {
+  flex: none;
+}
+
+.card svg {
+  fill: currentColor;
+}
+
+/* flex の子は中身より小さくならないので、min-width: 0 で長い名前を折り返せるようにする */
+.card > :is(span, div) {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.card :is(h2, h3),
+.card-name {
+  display: block;
+  margin: 0;
+  font-size: var(--font-text);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.card-sub {
+  display: block;
+  color: var(--muted);
+  font-size: var(--font-small);
+  line-height: 1.5;
+}

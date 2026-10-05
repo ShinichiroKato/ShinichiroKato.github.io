@@ -1,0 +1,53 @@
+{%- comment -%}
+  呼び出す側で assign してよい変数：
+    head_description  page.description の代わりに使う説明
+    head_alt_path     日英の両方があるとき、言語を除いたパス（hreflang に使う）
+{%- endcomment -%}
+{%- assign t = site.data.ui[page.lang] | default: site.data.ui.neutral -%}
+{%- assign description = head_description | default: page.description -%}
+{%- if page.title == t.site_name -%}
+  {%- assign full_title = page.title -%}
+{%- else -%}
+  {%- assign full_title = page.title | append: " - " | append: t.site_name -%}
+{%- endif -%}
+{%- if page.image -%}
+  {%- assign image = page.image -%}
+{%- elsif app -%}
+  {%- assign image = "/apps/" | append: app.slug | append: "/icon.png" -%}
+{%- else -%}
+  {%- assign image = "/apple-touch-icon.png" -%}
+{%- endif -%}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>{{ full_title | escape }}</title>
+  {%- if description %}
+  <meta name="description" content="{{ description | escape }}">
+  {%- endif %}
+  {%- if page.lang %}
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+  {%- endif %}
+  {%- if head_alt_path %}
+  <link rel="alternate" hreflang="ja" href="{{ site.url }}/ja{{ head_alt_path }}">
+  <link rel="alternate" hreflang="en" href="{{ site.url }}/en{{ head_alt_path }}">
+  <link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ head_alt_path }}">
+  {%- endif %}
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ t.site_name }}">
+  <meta property="og:title" content="{{ page.title | escape }}">
+  {%- if description %}
+  <meta property="og:description" content="{{ description | escape }}">
+  {%- endif %}
+  {%- comment -%} og:url は実在の URL のページだけに出す（404 は存在しない URL で表示されるので出さない） {%- endcomment -%}
+  {%- if page.lang or head_alt_path %}
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  {%- endif %}
+  <meta property="og:image" content="{{ site.url }}{{ image }}">
+  <meta property="og:locale" content="{{ t.locale }}">
+  {%- if head_alt_path %}
+  <meta property="og:locale:alternate" content="{% if t.locale == 'en_US' %}ja_JP{% else %}en_US{% endif %}">
+  {%- endif %}
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/style.css">

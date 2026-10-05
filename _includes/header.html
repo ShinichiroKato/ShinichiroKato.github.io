@@ -1,0 +1,17 @@
+{%- assign t = site.data.ui[page.lang] | default: site.data.ui.neutral -%}
+{%- comment -%} 言語のページからは振り分けを経由させない（振り分けがブラウザーの言語で移動し、選んだ言語が保たれないため） {%- endcomment -%}
+{%- if page.lang -%}
+  {%- assign home_url = "/" | append: page.lang | append: "/" -%}
+{%- else -%}
+  {%- assign home_url = "/" -%}
+{%- endif -%}
+<a class="skip-link" href="#main">{{ t.skip }}</a>
+<header>
+  <nav aria-label="{{ t.nav_label }}">
+    <a class="site-name" href="{{ home_url }}"{% unless page.lang == "en" %} lang="en"{% endunless %}{% if page.url == home_url %} aria-current="page"{% endif %}>{{ t.site_name }}</a>
+  {%- if include.other_url %}
+    {%- if page.lang == "ja" %}{% assign other = "en" %}{% else %}{% assign other = "ja" %}{% endif %}
+    <a href="{{ include.other_url }}" hreflang="{{ other }}" lang="{{ other }}">{{ site.data.ui[other].lang_name }}</a>
+  {%- endif %}
+  </nav>
+</header>

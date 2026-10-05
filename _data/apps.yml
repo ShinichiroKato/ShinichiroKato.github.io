@@ -1,0 +1,13 @@
+# この順にアプリ一覧のカードが並ぶ。
+# app_store_id は App Store で公開してから書く（公開前に書くと、まだないアプリへのリンクと Smart App Banner が出るため）。
+- slug: wright
+  name: Wright
+  app_store_id: "1214860797"
+  subtitle:
+    ja: 検索するすべての人に
+    en: For everyone who searches
+- slug: dropin
+  name: Dropin
+  subtitle:
+    ja: 今いる場所を、カレンダーに記録
+    en: Check in to your calendar

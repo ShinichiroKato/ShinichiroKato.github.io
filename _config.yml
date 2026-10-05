@@ -1,0 +1,15 @@
+# jekyll serve はこのファイルの変更を読み込み直さないので、変えたら起動し直す。
+url: https://shinichirokato.github.io
+repository: ShinichiroKato/ShinichiroKato.github.io
+
+# GitHub Pages は theme を書かないと既定のテーマを入れるので、明示して外す
+theme: null
+
+exclude:
+  - README.md
+  - AGENTS.md
+  - CLAUDE.md
+  - LICENSE
+  - Gemfile
+  - Gemfile.lock
+  - vendor
