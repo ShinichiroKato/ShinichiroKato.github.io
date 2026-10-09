@@ -8,6 +8,7 @@
     en: For everyone who searches
 - slug: dropin
   name: Dropin
+  app_store_id: "6818950468"
   subtitle:
     ja: 今いる場所を、カレンダーに記録
     en: Check in to your calendar
