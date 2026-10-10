@@ -12,6 +12,7 @@ ja:
   app_store_badge: ja-jp
   app_store_badge_width: 109
   qr_code: App StoreのQRコード
+  coming_soon: 近日公開
 en:
   lang_name: English
   locale: en_US
@@ -25,6 +26,7 @@ en:
   app_store_badge: en-us
   app_store_badge_width: 120
   qr_code: QR code for the App Store
+  coming_soon: Coming Soon
 neutral:
   locale: ja_JP
   site_name: Shinichiro Kato

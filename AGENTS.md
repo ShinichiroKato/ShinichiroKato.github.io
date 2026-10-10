@@ -85,7 +85,7 @@ npx lighthouse http://localhost:4000/ja/ --only-categories=accessibility,best-pr
    magick icon.png -depth 8 -strip PNG32:icon.png
    ```
 
-4. `_data/apps.yml` に slug、名前、サブタイトル（日英）を足す。
+4. `_data/apps.yml` に slug、名前、カテゴリ（日英）、サブタイトル（日英）を足す。
 5. App Store で公開したら、`app_store_id` を足す。
    紹介ページのアイコンの下に App Store のバッジと QR コードが出て、Smart App Banner も出る。
    QR コードは `apps/<slug>/qr.svg` に置く。

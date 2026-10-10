@@ -10,7 +10,16 @@ cards: true
 <div class="hero">
   <img src="/avatar.png" alt="" width="128" height="128">
   <h1>Shinichiro Kato</h1>
-  <p>iOS Developer, Tech Director, Accessibility Specialist</p>
+  <ul class="tags">
+    <li>iOS Developer</li>
+    <li>Tech Director</li>
+    <li>Accessibility</li>
+    <li>Apple Fan</li>
+    <li>Gadgets</li>
+    <li>Travel</li>
+    <li>Walking</li>
+    <li>Games</li>
+  </ul>
 </div>
 
 ## Apps

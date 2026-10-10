@@ -1,13 +1,21 @@
 # この順にアプリ一覧のカードが並ぶ。
 # app_store_id は App Store で公開してから書く（公開前に書くと、まだないアプリへのリンクと Smart App Banner が出るため）。
+# app_store_id のないアプリは、近日公開としてカードと紹介ページに印を出す。
+# category は何のアプリかを一言で言う（名前だけでは伝わらないため）。subtitle はその魅力を言う。
 - slug: wright
   name: Wright
+  category:
+    ja: 検索アプリ
+    en: Search App
   app_store_id: "1214860797"
   subtitle:
     ja: 検索するすべての人に
     en: For everyone who searches
 - slug: dropin
   name: Dropin
+  category:
+    ja: チェックインアプリ
+    en: Check In App
   app_store_id: "6818950468"
   subtitle:
     ja: 今いる場所を、カレンダーに記録

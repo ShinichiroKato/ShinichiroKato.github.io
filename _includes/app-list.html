@@ -2,6 +2,7 @@
   heading：h2 の節の中に置くときは h3 を渡す（見出しのレベルを飛ばさないため）
 {%- endcomment -%}
 {%- assign heading = include.heading | default: "h2" %}
+{%- assign t = site.data.ui[page.lang] %}
 <ul class="cards">
 {%- for app in site.data.apps %}
   <li>
@@ -9,7 +10,11 @@
       <img class="app-icon" src="/apps/{{ app.slug }}/icon.png" alt="" width="64" height="64">
       <div>
         <{{ heading }}{% unless page.lang == "en" %} lang="en"{% endunless %}>{{ app.name }}</{{ heading }}>
+        <span class="card-category">{{ app.category[page.lang] }}</span>
         <span class="card-sub">{{ app.subtitle[page.lang] }}</span>
+        {%- unless app.app_store_id %}
+        <span class="status">{{ t.coming_soon }}</span>
+        {%- endunless %}
       </div>
     </a>
   </li>

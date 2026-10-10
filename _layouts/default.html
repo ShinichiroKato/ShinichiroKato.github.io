@@ -41,6 +41,7 @@
     <div class="hero">
       <img class="app-icon" src="/apps/{{ app.slug }}/icon.png" alt="" width="128" height="128">
       <h1{% unless page.lang == "en" %} lang="en"{% endunless %}>{{ app.name }}</h1>
+      <p class="category">{{ app.category[page.lang] }}</p>
       <p>{{ app.subtitle[page.lang] }}</p>
       {%- if app.app_store_id %}
       {%- comment -%} Apple のマーケティングツールが出す埋め込みと同じ形にする。itsct で、バッジと QR コードのどちらから来たかが App Store Connect でわかる {%- endcomment -%}
@@ -52,6 +53,8 @@
         </picture>
       </a>
       <img class="qr" src="/apps/{{ app.slug }}/qr.svg" alt="{{ t.qr_code }}" width="96" height="96">
+      {%- else %}
+      <span class="status">{{ t.coming_soon }}</span>
       {%- endif %}
     </div>
     {%- endif %}

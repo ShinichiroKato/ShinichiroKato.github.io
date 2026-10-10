@@ -14,6 +14,7 @@
   --card: #ffffff;
   --card-line: #e5e5ea;
   --card-hover: #fafafa;
+  --fill: #e8e8ed;
 
   --font-text: 1.0625rem;
   --font-lead: 1.3125rem;
@@ -36,6 +37,7 @@
     --card: #1c1c1e;
     --card-line: #2c2c2e;
     --card-hover: #2c2c2e;
+    --fill: #2c2c2e;
   }
 }
 
@@ -312,6 +314,43 @@ ul {
   line-height: 1.4;
 }
 
+/*
+  プロフィールの肩書きや好きなもの。中身は何を入れてもよい。
+  リンクではないので押せそうに見せない（枠線もホバーも付けず、文字はリンクの色にしない）。
+  丸いボタンや枠線の .status（状態）と見分けられるよう、角を小さくし、先頭に # を付けてタグらしくする。
+*/
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tags li {
+  padding: 2px 10px;
+  border-radius: 6px;
+  background: var(--fill);
+  font-size: var(--font-small);
+  line-height: 1.6;
+}
+
+/* # は飾りなので読み上げない。代わりの文字の書き方に未対応のブラウザーでは指定ごと無視され、# が出ないだけになる */
+.tags li::before {
+  content: "#" / "";
+  margin-right: 2px;
+  color: var(--muted);
+}
+
+/* 何のアプリか。名前とサブタイトルの間に置く小さな見出しで、サブタイトルより先に目に入るよう太くする */
+.hero .category {
+  margin-top: 0.25rem;
+  font-size: var(--font-small);
+  font-weight: 600;
+}
+
 .badge {
   margin-top: 1.25rem;
 }
@@ -324,6 +363,25 @@ ul {
 
 .qr {
   margin-top: 1.5rem;
+}
+
+/* 近日公開の印。入手のバッジの位置に置き、App Store にまだないことを伝える */
+.status {
+  display: inline-block;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: var(--font-small);
+  line-height: 1.6;
+}
+
+.hero .status {
+  margin-top: 1.25rem;
+}
+
+.card .status {
+  margin-top: 6px;
 }
 
 /* QR コードはパソコンの画面を iPhone で読み取るためのものなので、iPhone と iPad では出さない */
@@ -341,13 +399,14 @@ ul {
   .hero {
     display: grid;
     grid-template-columns: auto 1fr auto;
-    grid-template-rows: 1fr auto auto auto 1fr;
+    grid-template-rows: 1fr auto auto auto auto 1fr;
     grid-template-areas:
-      "icon .     qr"
-      "icon name  qr"
-      "icon sub   qr"
-      "icon badge qr"
-      "icon .     qr";
+      "icon .        qr"
+      "icon name     qr"
+      "icon category qr"
+      "icon sub      qr"
+      "icon badge    qr"
+      "icon .        qr";
     column-gap: 24px;
     padding-bottom: 2rem;
     border-bottom: 1px solid var(--line);
@@ -369,7 +428,17 @@ ul {
     margin-top: 0.25rem;
   }
 
-  .badge {
+  .hero .category {
+    grid-area: category;
+  }
+
+  .hero .tags {
+    grid-area: sub;
+    justify-content: flex-start;
+  }
+
+  .badge,
+  .hero .status {
     grid-area: badge;
     justify-self: start;
     margin-top: 0.75rem;
@@ -477,6 +546,14 @@ ul {
   font-size: var(--font-text);
   font-weight: 600;
   line-height: 1.4;
+}
+
+.card-category {
+  display: block;
+  color: var(--muted);
+  font-size: var(--font-small);
+  font-weight: 600;
+  line-height: 1.5;
 }
 
 .card-sub {
