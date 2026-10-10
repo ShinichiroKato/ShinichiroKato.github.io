@@ -2,7 +2,7 @@
 layout: default
 lang: en
 title: Dropin Privacy Policy
-description: What information Dropin handles, where it is stored, and how to delete it.
+description: What information Dropin handles, where it is stored, what it sends, and how to delete it.
 heading: Privacy Policy
 ---
 
@@ -10,17 +10,19 @@ heading: Privacy Policy
 
 The developer of Dropin does not collect any information about you through the app. Dropin has no accounts, analytics, or ads.
 
-Dropin stores the following information only on this device and does not sync it to your other devices.
+Dropin stores the following information only on this device and does not sync it.
 
 - Your place history
 - A record of the events you create in Dropin
 - Your settings
 
-This information remains on this device until you delete it as described in “Deleting Your Data.”
+Check-ins are saved as events in your calendar. Whether they sync across your devices depends on the settings of that calendar’s account (such as iCloud).
 
-Check-ins are saved as events in your iOS calendar. Whether they sync to your other devices depends on the settings of that calendar’s account (such as iCloud).
+Stored information remains until you delete it as described in “Deleting Your Data.” It may also be included in your device backups.
 
-## Information Sent to Apple Maps
+If you turn on Share With App Developers, the developer may receive crash logs and diagnostic information from Apple. Apple provides this information in a form that doesn’t identify you. It is used to fix bugs.
+
+## Information Sent Outside the App
 
 To search for places, Dropin sends the following information to Apple Maps.
 
@@ -28,7 +30,7 @@ To search for places, Dropin sends the following information to Apple Maps.
 - When searching for a place by name: the text you enter and the area around your current location
 - When saving a place from your history: the place’s identifier in Apple Maps
 
-This information is not sent to the developer and is handled in accordance with [Apple’s Privacy Policy](https://www.apple.com/legal/privacy/).
+Apple Maps may also receive your IP address. This information is not sent to the developer and is handled in accordance with [Apple’s Privacy Policy](https://www.apple.com/legal/privacy/).
 
 ## Permissions
 
@@ -40,15 +42,17 @@ Without calendar access, you cannot check in. Without location access, you can s
 ## Deleting Your Data
 
 - You can delete places from your history one at a time, or all at once, in Dropin’s Settings > History.
-- Deleting Dropin deletes all of the information it stored on this device.
+- Deleting Dropin deletes the information it stored on this device.
 - Events saved to your calendar remain after you delete Dropin. To delete them, do so on Dropin’s home screen before you delete the app, or in the Calendar app.
 
 ## Contact Form
 
-Messages you send using the contact form on the [Support](../support/) page are received by the developer. The form does not collect your name, email address, or other contact information. The developer uses these messages only to improve the apps.
+Messages you send using the contact form on the [Support](../support/) page are received by the developer. The form has no fields for your name, email address, or other contact information. The developer uses these messages to improve the apps and does not share them with third parties except as required by law. Messages that are no longer needed are deleted. Because the form can’t identify who sent a message, individual messages can’t be deleted after they are sent.
 
 Because the form uses Google Forms, messages you send are also handled in accordance with [Google’s Privacy Policy](https://policies.google.com/privacy?hl=en).
 
-Effective date: <time datetime="2026-10-05">October 5, 2026</time><br>
+This policy may change. Changes take effect when they are posted on this page.<br>
+Effective date: <time datetime="2026-10-11">October 11, 2026</time><br>
+Developer: Shinichiro Kato<br>
 For questions, see [Support](../support/).
 {: .note}

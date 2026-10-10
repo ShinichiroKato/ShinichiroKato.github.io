@@ -2,13 +2,10 @@
 layout: default
 lang: en
 title: Dropin
-description: Pick a nearby place, tap save, and your iPhone calendar keeps track of where you were and when.
+description: Pick a nearby place, tap save, and your calendar keeps track of where you were and when.
 ---
 
-Pick a nearby place, tap save, and your iPhone calendar keeps track of where you were and when.
-{: .lead}
-
-Dropin saves each check-in as a regular calendar event. Because it lives in your own calendar, you can see it in the Calendar app and on any other device that syncs the same calendar.
+Dropin is an app that saves each check-in as a regular calendar event. Because it lives in your own calendar, you can see it in the Calendar app and on any other device that syncs the same calendar.
 
 ## Key Features
 
@@ -42,9 +39,9 @@ Change the date, set the time in 5-minute steps, and pick a duration from 15 min
 
 ## Privacy
 
-Your place history and settings stay on this device. The only data Dropin sends out goes to Apple Maps to find places, and none of it is sent to the developer.
+The developer doesn’t collect any information about you through the app. Your place history and settings stay on this device. The only information Dropin sends out goes to Apple Maps to find places.
 
 ## Good to Know
 
 - Dropin needs full access to your calendar.
-- Without location access, you can still check in from your place history or by typing a place name.
+- Except in cases of intentional misconduct or gross negligence by the developer, the developer is not liable for any damage caused by using this app.

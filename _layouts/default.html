@@ -3,7 +3,7 @@
   front matter：
     lang          ja か en（404 では書かない）
     title         ページの名前（サイト名は書かない。レイアウトが付ける）
-    description   検索結果や共有したときの説明（404 以外は必ず書く）
+    description   検索結果や共有したときの説明（404 以外は必ず書く）。アプリの紹介ページでは、本文の先頭に導入文としても出すので、書式やリンクのない文で書く
     heading       ポリシーとサポートの見出し（アプリのページで書かなければ紹介ページになる）
     cards         true ならカードを並べるページにする（プロフィール、アプリ一覧）
     image         共有したときの画像（任意）
@@ -57,6 +57,8 @@
       <span class="status">{{ t.coming_soon }}</span>
       {%- endif %}
     </div>
+    {%- comment -%} 検索結果に出る説明と導入文を同じ文にそろえるため、description から出す {%- endcomment %}
+    <p class="lead">{{ page.description | escape }}</p>
     {%- endif %}
 {{ content }}
     {%- if app and page.heading == nil %}

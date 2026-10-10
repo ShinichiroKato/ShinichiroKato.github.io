@@ -220,7 +220,7 @@ ul {
   padding-left: 1.2em;
 }
 
-/* 導入文。ページの最初の段落に {: .lead} で付ける */
+/* 導入文。アプリの紹介ページで、レイアウトが description から出す */
 .lead {
   margin-bottom: 1.5rem;
   color: var(--muted);
