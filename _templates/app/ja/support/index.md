@@ -2,9 +2,13 @@
 layout: default
 lang: ja
 title: APPNAMEのサポート
-description: APPNAMEについての問い合わせ先と、プライバシーポリシーへのリンクです。
+description: APPNAMEのよくある質問、問い合わせ先、プライバシーポリシーへのリンクです。
 heading: サポート
 ---
+
+## よくある質問
+
+[APPNAMEのよくある質問](../faq/)
 
 ## 問い合わせ
 

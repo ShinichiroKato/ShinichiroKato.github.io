@@ -63,6 +63,7 @@
 {{ content }}
     {%- if app and page.heading == nil %}
     <ul class="choices">
+      <li><a href="/{{ page.lang }}/apps/{{ app.slug }}/faq/">{{ t.faq }}</a></li>
       <li><a href="/{{ page.lang }}/apps/{{ app.slug }}/support/">{{ t.support }}</a></li>
       <li><a href="/{{ page.lang }}/apps/{{ app.slug }}/privacy/">{{ t.privacy }}</a></li>
     </ul>

@@ -5,7 +5,7 @@ title: Wright
 description: Type a few letters, then pick the site or app to search with. Wright makes everyday searching a little easier.
 ---
 
-Wright is an app made just to help you search. Suggestions appear as you type, and you can search right away with the sites you use most.
+Wright is an app made just to help you search. The keyboard is ready as soon as you open it, suggestions appear as you type, and you can search right away with the sites you use most.
 
 ## Key Features
 
@@ -23,15 +23,15 @@ Keep the sites you search most, like Google, YouTube, Wikipedia, X, and Amazon, 
 
 ### Private Mode
 
-Private Mode keeps your search history and bookmarks separate from your usual ones, stored only on this device. You can also protect it with Face ID or Touch ID.
+Keeps your search history and bookmarks separate from your usual ones, stored only on this device. You can also protect it with Face ID or Touch ID.
 
 ### Scan a code to search
 
-Scan a QR code or a book’s barcode to search for it. Books are looked up on Amazon.
+Scan a QR code or a book’s barcode to search for it.
 
 ### Sync with iCloud
 
-Your bookmarks and search history sync across your devices signed in to the same Apple Account, using iCloud. Bookmarks and search history in Private Mode are stored only on this device and not synced.
+Your bookmarks and search history sync across your devices signed in to the same Apple Account, using iCloud.
 
 ## Great For
 
@@ -41,11 +41,6 @@ Your bookmarks and search history sync across your devices signed in to the same
 - Searching right away without hunting for each app’s search button
 - Finding words you can’t quite remember
 
-## Privacy
-
-The developer doesn’t collect any information about you through the app. To show suggestions, Wright sends what you type to Google. If you don’t want that, turn it off in Wright’s Settings > Suggestions.
-
 ## Good to Know
 
 - Suggestions and other content are not guaranteed to be accurate.
-- Except in cases of intentional misconduct or gross negligence by the developer, the developer is not liable for any damage caused by using this app.

@@ -1,13 +1,13 @@
 # AGENTS.md
 
 Shinichiro Kato の個人サイト。
-GitHub Pages の標準の Jekyll 3.10 で、プロフィールとアプリの紹介、プライバシーポリシー、サポートのページを日英で置く。
+GitHub Pages の標準の Jekyll 3.10 で、プロフィールとアプリの紹介、プライバシーポリシー、サポート、よくある質問のページを日英で置く。
 URL の一覧は [README.md](README.md) を参照。
 
 ## 守ること
 
 - Commit、Push、リポジトリの作成、GitHub Pages の設定など、公開に関わる操作は実行前に確認する。
-- App Store Connect に登録した URL（`/{ja,en}/apps/<slug>/privacy/`、`/{ja,en}/apps/<slug>/support/` など）は変更も削除もしない。
+- App Store Connect に登録した URL と、アプリの中からリンクしている URL（`/{ja,en}/apps/<slug>/privacy/`、`/{ja,en}/apps/<slug>/support/`、`/{ja,en}/apps/<slug>/faq/` など）は変更も削除もしない。
 - プラグイン、テーマ、GitHub Actions は足さない（GitHub Pages が既定で有効にするものだけを使う）。
 - JavaScript は振り分けのページ（`_layouts/chooser.html`）だけで使い、動かなくても選べるリンクを出す。
 - 解析ツールなどの追跡用のスクリプトは入れない。
@@ -35,12 +35,28 @@ html-validate の次の指摘は、HTML5 では正しいので対象外とする
 
 アプリのページを足したり書き換えたりしたら、見出しの並びがテンプレートと違うページを洗い出す。
 節を消したアプリ（外部に送らない、権限を使わない）は出てくるので、ルールどおりかを確かめる。
-また、テンプレートの印（`APPNAME` と `【】`）と、端末やOSの名前が残っていないことを確かめる。
+よくある質問は、話題がアプリごとに違うので、最後の「問い合わせ」の節がテンプレートと違うページを洗い出す。
+また、よくある質問のページがそろっていることと、テンプレートの印（`APPNAME` と `【】`）と、端末やOSの名前が残っていないことを確かめる。
 
 ```sh
 for f in index privacy/index support/index; do for l in ja en; do t=$(grep '^## ' _templates/app/$l/$f.md); for d in $l/apps/*/; do [ "$(grep '^## ' "$d$f.md")" = "$t" ] || echo "$d$f.md"; done; done; done
+for l in ja en; do for f in $l/apps/*/faq/index.md; do n=$(sed -nE 's/^title: (.*)( FAQ|のよくある質問)$/\1/p' "$f"); diff -q <(awk '/^## /{b=""} {b=b $0 "\n"} END{printf "%s", b}' _templates/app/$l/faq/index.md | sed "s/APPNAME/$n/g") <(awk '/^## /{b=""} {b=b $0 "\n"} END{printf "%s", b}' "$f") >/dev/null || echo "$f"; done; done
+for d in ja/apps/*/ en/apps/*/; do [ -f "${d}faq/index.md" ] || echo "${d}faq/index.md"; done
+for d in apps/*/; do [ -f "${d}faq/index.html" ] || echo "${d}faq/index.html"; done
 grep -rn 'APPNAME\|【' ja/apps en/apps apps
 grep -rnE 'iPhone|iPad|Mac|macOS|iOS|iPadOS' ja/apps en/apps _data/apps.yml
+```
+
+原本があるページ（「アプリのページの形」）は、原本とずれていないことを確かめる。
+プライバシーポリシーとよくある質問は、原本とまったく同じであること。
+紹介ページは、見出しとリストの記号、空白のほかに違いがないこと。
+
+```sh
+# <リポジトリ> はアプリのリポジトリのパス
+for l in ja en; do
+  cmp <リポジトリ>/docs/store/privacy-policy/$l.md $l/apps/<slug>/privacy/index.md
+  cmp <リポジトリ>/docs/store/faq/$l.md $l/apps/<slug>/faq/index.md
+done
 ```
 
 `jekyll serve` が動いているときは、Lighthouse でも確かめる。
@@ -84,12 +100,32 @@ npx lighthouse http://localhost:4000/ja/ --only-categories=accessibility,best-pr
 ## アプリのページの形
 
 アプリのページは `_templates/app/` のテンプレートから作り、すべてのアプリで形をそろえる。
+よくある質問は、すべてのアプリで用意する。
+
+次のページは、アプリのリポジトリに原本がある。
+ここでは直さず、原本を写す（直すときは原本を直してもらう）。
+原本も、このファイルの決まりとテンプレートに従って書かれている。
+
+| ページ | 原本（アプリのリポジトリ） | 写し方 |
+| --- | --- | --- |
+| 紹介 | `docs/store/metadata/{ja,en-US}/description.txt`（App Store の説明） | 形だけを直す（下） |
+| プライバシーポリシー | `docs/store/privacy-policy/{ja,en}.md` | そのまま写す |
+| よくある質問 | `docs/store/faq/{ja,en}.md` | そのまま写す |
+
+紹介とプライバシーポリシーは、原本がないアプリだけ、テンプレートからここで書く。
 
 - `##` の見出しは、テンプレートと同じ名前と順にする。
   足したり言い換えたりしない。
-  - 紹介：主な機能、こんなときに、プライバシー、ご利用にあたって（Key Features、Great For、Privacy、Good to Know）
+  - 紹介：主な機能、こんなときに、ご利用にあたって（Key Features、Great For、Good to Know）
   - プライバシーポリシー：収集する情報、外部に送信する情報、権限、データの削除、問い合わせフォーム（Information Collected、Information Sent Outside the App、Permissions、Deleting Your Data、Contact Form）
   - サポート：テンプレートのまま、アプリの名前だけを変える。
+  - よくある質問：話題はアプリごとに決めてよい。最後の「問い合わせ」（Contact）の節だけは、テンプレートのまま、アプリの名前だけを変える。
+- よくある質問は、`##` に話題、`###` に1つの質問を置く。
+  質問は利用者の言葉で、疑問の形か、困っている状態の形で書く。
+  プライバシーポリシーや紹介ページと同じことを言うときは、同じ言い回しにする。
+- 紹介ページを原本から写すときは、文言を足しも削りも言い換えもしない（句点の有無も含む）。
+  このファイルのほかの書き方の決まりと食い違っても、原本を優先する。
+  直すのは形だけにする。1段落目を `description` に、“■”の節を `##`（名前はテンプレートの見出しにそろえる）に、“主な機能”の“•”を `###` と段落に、ほかの“•”をリストにする。
 - プライバシーポリシーで、外部に送らないアプリは「外部に送信する情報」の節と、`description` の「外部に送る情報」を消す。
   権限を使わないアプリは「権限」の節を消す。
 - 端末やOSの名前（iPhone、iPad、Mac、iOS、macOSなど）は書かない。
@@ -101,10 +137,11 @@ npx lighthouse http://localhost:4000/ja/ --only-categories=accessibility,best-pr
 - 紹介ページの `###` は、何ができるかがわかる短い言い方にする。
   数は決めない。
 - 「こんなときに」の項目は「〜する」の形（英語は「-ing」）で書く。
-- 「ご利用にあたって」には、許可しないと使えない権限、使えない条件、自動で作る内容の正確さの注意を書き、最後に免責の文を置く。
-- テンプレートにある決まった文（紹介の「ご利用にあたって」の免責の文、プライバシーポリシーの冒頭の文、問い合わせフォームの節、末尾の注記など）は、文言を変えない。
+- 「ご利用にあたって」には、許可しないと使えない権限、使えない条件、自動で作る内容の正確さの注意を書く。
+- テンプレートにある決まった文（プライバシーポリシーの冒頭の文、問い合わせフォームの節、末尾の注記、よくある質問の `description` と「問い合わせ」の節など）は、文言を変えない。
   どのアプリにも同じように当てはまるので、1つだけ変えるとアプリの間で説明が食い違う。
   アプリだけのことは、決まった文を変えずに段落を足して書いてよい。
+- よくある質問の「問い合わせ」の節とプライバシーポリシーの問い合わせフォームの節は、アプリに“設定”＞“〇〇について”＞“フィードバックを送信”があることを前提にしている。
 - テンプレートにない文でも、ほかのアプリと同じことを言うときは、同じ言い回しにする。
 - 権限の名前は次の表に合わせる。
   新しい権限は、設定アプリでの表示に合わせて表に足す。
@@ -135,13 +172,14 @@ npx lighthouse http://localhost:4000/ja/ --only-categories=accessibility,best-pr
 
 ## ポリシーを改定するとき
 
-- 日本語と英語の両方を直し、末尾の施行日を更新する。
-- テンプレートの決まった文や、決まった言い回しの表を変えるときは、すべてのアプリの日英のページとテンプレート、表を一度に直す。
+- 原本があるアプリは、原本を直してもらってから写す。
+- 日本語と英語の両方を直し、末尾の施行日を公開する日にする。原本にも同じ日付を入れてもらう。
+- テンプレートの決まった文や、決まった言い回しの表を変えるときは、すべてのアプリの日英のページとテンプレート、表を一度に直す。原本があるアプリは、原本も直してもらう。
 - App Store Connect の「App のプライバシー」の回答と矛盾しないか、作業を頼んだ人に確認を頼む。
 
 ## アプリを追加する手順
 
-日本語、英語、振り分けのページをすべてそろえてから、最後に `_data/apps.yml` に足す。
+日本語、英語、振り分けのページ（紹介、プライバシーポリシー、サポート、よくある質問）をすべてそろえてから、最後に `_data/apps.yml` に足す。
 足した時点で、アプリ一覧にカードが並ぶからだ。
 
 1. テンプレートをコピーし、`APPNAME` をアプリの名前に置き換える。
@@ -154,9 +192,18 @@ npx lighthouse http://localhost:4000/ja/ --only-categories=accessibility,best-pr
    grep -rl APPNAME ja/apps/<slug> en/apps/<slug> apps/<slug> | xargs sed -i '' 's/APPNAME/<名前>/g'
    ```
 
-2. `【】` の印を、紹介とポリシーの本文に書き換える（「アプリのページの形」に従う）。
+2. 紹介とプライバシーポリシーは、原本があれば原本を写す。
+   なければ、`【】` の印を本文に書き換える（どちらも「アプリのページの形」に従う）。
    ページ間のリンクは相対で書いてあるので、そのままでよい。
-3. アイコンを 256×256、8bit の PNG で置く。
+3. よくある質問の原本を写す（手順 1 でコピーしたテンプレートを置き換える）。
+   原本がまだなければ、`_templates/app/{ja,en}/faq/index.md` から原本を作ってもらう。
+
+   ```sh
+   cp <リポジトリ>/docs/store/faq/ja.md ja/apps/<slug>/faq/index.md
+   cp <リポジトリ>/docs/store/faq/en.md en/apps/<slug>/faq/index.md
+   ```
+
+4. アイコンを 256×256、8bit の PNG で置く。
    ライトモードの `apps/<slug>/icon.png` と、ダークモードの `apps/<slug>/icon-dark.png` の両方をそろえる。
    Icon Composer の `.icon` からは次のように書き出せる（`ictool` は Xcode の Icon Composer.app の中にある）。
 
@@ -166,11 +213,11 @@ npx lighthouse http://localhost:4000/ja/ --only-categories=accessibility,best-pr
    for f in icon.png icon-dark.png; do magick $f -depth 8 -strip PNG32:$f; done
    ```
 
-4. `_data/apps.yml` に slug、名前、カテゴリ（日英）、サブタイトル（日英）を足す。
+5. `_data/apps.yml` に slug、名前、カテゴリ（日英）、サブタイトル（日英）を足す。
    問い合わせフォーム（Googleフォーム）の“アプリ”の選択肢にも名前を足す。
-   サポートページのリンクとアプリの“問題を報告”は、この欄に名前を入れてフォームを開くので、選択肢にないと入らない。
+   サポートページのリンクとアプリの“設定”＞“〇〇について”＞“フィードバックを送信”は、この欄に名前を入れてフォームを開くので、選択肢にないと入らない。
    同じ理由で、フォームの欄は消したり作り直したりしない（アプリのコードが欄の ID を使っている）。
-5. App Store で公開したら、`app_store_id` を足す。
+6. App Store で公開したら、`app_store_id` を足す。
    紹介ページのアイコンの下に App Store のバッジと QR コードが出て、Smart App Banner も出る。
    QR コードは `apps/<slug>/qr.svg` に置く。
    [Apple のマーケティングツール](https://toolbox.marketingtools.apple.com/)が QR コードに使う短縮リンク（`itsct=apps_box_qrcode` を付けたリンクを `apple.co` で短くしたもの）から作る。

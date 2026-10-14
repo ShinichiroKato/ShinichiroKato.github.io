@@ -2,9 +2,13 @@
 layout: default
 lang: en
 title: Wright Support
-description: How to contact the developer of Wright, and a link to its privacy policy.
+description: Links to the Wright FAQ and privacy policy, and how to contact the developer.
 heading: Support
 ---
+
+## Frequently Asked Questions
+
+[Wright FAQ](../faq/)
 
 ## Contact
 

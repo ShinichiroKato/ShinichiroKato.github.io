@@ -8,7 +8,7 @@ heading: Privacy Policy
 
 ## Information Collected
 
-The developer of Wright does not collect any information about you through the app. Wright has no accounts, analytics, or ads.
+The developer of Wright does not collect any information about you through the app, except as described in “Contact Form.” Wright has no accounts, analytics, or ads.
 
 Wright stores the following information on this device.
 
@@ -26,11 +26,11 @@ If you turn on Share With App Developers, the developer may receive crash logs a
 
 ### Google Suggestions
 
-To show suggestions, Wright sends the text you are typing in the search bar, along with your device’s language, to Google. This feature is on by default and also sends this information in Private Mode. Google may also receive your IP address. This information is handled in accordance with [Google’s Privacy Policy](https://policies.google.com/privacy?hl=en). To stop sending it, turn off Google suggestions in Wright’s Settings > Suggestions.
+To show suggestions, Wright sends the text you are typing in the search bar, along with your device’s language, to Google. This feature is on by default and also sends this information in Private Mode. Google may also receive your IP address. This information is not sent to the developer and is handled in accordance with [Google’s Privacy Policy](https://policies.google.com/privacy?hl=en). To stop sending it, turn off Google Suggestions in Wright’s Settings > Suggestions.
 
 ### Running a Search
 
-When you run a search, Wright opens the site or app you chose with the words you entered. When you scan a book’s barcode, Wright searches for it on Amazon. The sites and apps you search with may also receive your IP address. This information is handled in accordance with each service’s privacy policy. Web pages opened inside Wright share cookies with Safari.
+When you run a search, Wright opens the site or app you chose with the words you entered. When you scan a book’s barcode, Wright searches for it on Amazon. The sites and apps you search with may also receive your IP address. This information is handled in accordance with each service’s privacy policy. When you open web pages inside Wright, cookies and other website data are stored within Wright and not shared with Safari.
 
 ### Clipboard
 
@@ -47,17 +47,19 @@ You can still use the rest of the app without allowing any of these. You can cha
 ## Deleting Your Data
 
 - To delete a single item from your search history or bookmarks, touch and hold it, then choose Delete.
-- In Wright’s Settings, use Delete Data to delete the bookmarks, search history, or all data in the mode you’re viewing (normal or Private).
+- In Wright’s Settings > Reset Wright, choose Delete All Bookmarks or Clear Search History to delete all bookmarks or search history in the mode you’re viewing (normal or Private). Choose Erase All Content to erase bookmarks and search history in both modes.
 - Deleting Wright deletes the information it stored on this device. Bookmarks and search history synced to iCloud remain, so delete them in Wright before you delete the app.
 
 ## Contact Form
 
 Messages you send using the contact form on the [Support](../support/) page are received by the developer. The form has no fields for your name, email address, or other contact information. The developer uses these messages to improve the apps and does not share them with third parties except as required by law. Messages that are no longer needed are deleted. Because the form can’t identify who sent a message, individual messages can’t be deleted after they are sent.
 
+If you open the form from Settings > About Wright > Send Feedback in Wright, the app name (Wright), the version of Wright, the OS version, and your device model are filled in, and the developer receives them when you send the form. This information is sent to Google when you open the form.
+
 Because the form uses Google Forms, messages you send are also handled in accordance with [Google’s Privacy Policy](https://policies.google.com/privacy?hl=en).
 
 This policy may change. Changes take effect when they are posted on this page.<br>
-Effective date: <time datetime="2026-10-11">October 11, 2026</time><br>
+Effective date: <time datetime="2026-10-15">October 15, 2026</time><br>
 Developer: Shinichiro Kato<br>
 For questions, see [Support](../support/).
 {: .note}

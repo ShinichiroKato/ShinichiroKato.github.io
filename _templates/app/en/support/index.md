@@ -2,9 +2,13 @@
 layout: default
 lang: en
 title: APPNAME Support
-description: How to contact the developer of APPNAME, and a link to its privacy policy.
+description: Links to the APPNAME FAQ and privacy policy, and how to contact the developer.
 heading: Support
 ---
+
+## Frequently Asked Questions
+
+[APPNAME FAQ](../faq/)
 
 ## Contact
 

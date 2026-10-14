@@ -8,7 +8,7 @@ heading: Privacy Policy
 
 ## Information Collected
 
-The developer of APPNAME does not collect any information about you through the app. APPNAME has no accounts, analytics, or ads.
+The developer of APPNAME does not collect any information about you through the app, except as described in “Contact Form.” APPNAME has no accounts, analytics, or ads.
 
 APPNAME stores the following information 【where, and whether it syncs】.
 
@@ -38,6 +38,8 @@ If you turn on Share With App Developers, the developer may receive crash logs a
 ## Contact Form
 
 Messages you send using the contact form on the [Support](../support/) page are received by the developer. The form has no fields for your name, email address, or other contact information. The developer uses these messages to improve the apps and does not share them with third parties except as required by law. Messages that are no longer needed are deleted. Because the form can’t identify who sent a message, individual messages can’t be deleted after they are sent.
+
+【What is filled in when the form is opened from the app, and when it is received (delete if not needed)】
 
 Because the form uses Google Forms, messages you send are also handled in accordance with [Google’s Privacy Policy](https://policies.google.com/privacy?hl=en).
 

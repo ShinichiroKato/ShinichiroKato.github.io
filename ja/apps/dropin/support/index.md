@@ -2,9 +2,13 @@
 layout: default
 lang: ja
 title: Dropinのサポート
-description: Dropinについての問い合わせ先と、プライバシーポリシーへのリンクです。
+description: Dropinのよくある質問、問い合わせ先、プライバシーポリシーへのリンクです。
 heading: サポート
 ---
+
+## よくある質問
+
+[Dropinのよくある質問](../faq/)
 
 ## 問い合わせ
 

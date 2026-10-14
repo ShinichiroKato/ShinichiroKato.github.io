@@ -2,9 +2,13 @@
 layout: default
 lang: en
 title: Dropin Support
-description: How to contact the developer of Dropin, and a link to its privacy policy.
+description: Links to the Dropin FAQ and privacy policy, and how to contact the developer.
 heading: Support
 ---
+
+## Frequently Asked Questions
+
+[Dropin FAQ](../faq/)
 
 ## Contact
 

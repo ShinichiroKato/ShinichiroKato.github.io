@@ -22,11 +22,6 @@ APPNAME is 【what the app does】. 【One or two more sentences】
 - 【A situation】
 - 【A situation】
 
-## Privacy
-
-The developer doesn’t collect any information about you through the app. 【Where data is stored and what is sent, in one or two sentences】
-
 ## Good to Know
 
 - 【Permissions the app can’t work without, limitations, and accuracy notes for generated content (delete what doesn’t apply)】
-- Except in cases of intentional misconduct or gross negligence by the developer, the developer is not liable for any damage caused by using this app.

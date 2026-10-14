@@ -5,6 +5,7 @@ ja:
   site_name: Shinichiro Kato
   nav_label: サイト
   skip: 本文へ移動
+  faq: よくある質問
   support: サポート
   privacy: プライバシーポリシー
   app_store: App Storeからダウンロード
@@ -19,6 +20,7 @@ en:
   site_name: Shinichiro Kato
   nav_label: Site
   skip: Skip to main content
+  faq: FAQ
   support: Support
   privacy: Privacy Policy
   app_store: Download on the App Store

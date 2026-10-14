@@ -1,7 +1,7 @@
 # ShinichiroKato.github.io
 
 Shinichiro Kato の個人サイト <https://shinichirokato.github.io/> のソース。
-プロフィールと、公開しているアプリの紹介、プライバシーポリシー、サポートのページを置いている。
+プロフィールと、公開しているアプリの紹介、プライバシーポリシー、サポート、よくある質問のページを置いている。
 GitHub Pages の標準の Jekyll で作っている。
 
 Issues と Pull Request は受け付けていない。
@@ -18,6 +18,7 @@ Issues と Pull Request は受け付けていない。
 /{ja,en}/apps/<slug>/          アプリの紹介
 /{ja,en}/apps/<slug>/privacy/  プライバシーポリシー
 /{ja,en}/apps/<slug>/support/  サポート
+/{ja,en}/apps/<slug>/faq/      よくある質問
 /、/apps/、/apps/<slug>/...     振り分け
 ```
 

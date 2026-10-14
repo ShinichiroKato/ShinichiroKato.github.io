@@ -2,9 +2,13 @@
 layout: default
 lang: ja
 title: Wrightのサポート
-description: Wrightについての問い合わせ先と、プライバシーポリシーへのリンクです。
+description: Wrightのよくある質問、問い合わせ先、プライバシーポリシーへのリンクです。
 heading: サポート
 ---
+
+## よくある質問
+
+[Wrightのよくある質問](../faq/)
 
 ## 問い合わせ
 
