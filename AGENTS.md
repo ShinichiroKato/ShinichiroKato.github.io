@@ -156,12 +156,14 @@ npx lighthouse http://localhost:4000/ja/ --only-categories=accessibility,best-pr
 
 2. `【】` の印を、紹介とポリシーの本文に書き換える（「アプリのページの形」に従う）。
    ページ間のリンクは相対で書いてあるので、そのままでよい。
-3. `apps/<slug>/icon.png` を 256×256、8bit の PNG で置く。
+3. アイコンを 256×256、8bit の PNG で置く。
+   ライトモードの `apps/<slug>/icon.png` と、ダークモードの `apps/<slug>/icon-dark.png` の両方をそろえる。
    Icon Composer の `.icon` からは次のように書き出せる（`ictool` は Xcode の Icon Composer.app の中にある）。
 
    ```sh
    ictool AppIcon.icon --export-image --output-file icon.png --platform iOS --rendition Default --width 128 --height 128 --scale 2
-   magick icon.png -depth 8 -strip PNG32:icon.png
+   ictool AppIcon.icon --export-image --output-file icon-dark.png --platform iOS --rendition Dark --width 128 --height 128 --scale 2
+   for f in icon.png icon-dark.png; do magick $f -depth 8 -strip PNG32:$f; done
    ```
 
 4. `_data/apps.yml` に slug、名前、カテゴリ（日英）、サブタイトル（日英）を足す。

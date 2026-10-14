@@ -7,7 +7,7 @@
 {%- for app in site.data.apps %}
   <li>
     <a class="card" href="/{{ page.lang }}/apps/{{ app.slug }}/">
-      <img class="app-icon" src="/apps/{{ app.slug }}/icon.png" alt="" width="64" height="64">
+      {% include app-icon.html slug=app.slug size=64 %}
       <div>
         <{{ heading }}{% unless page.lang == "en" %} lang="en"{% endunless %}>{{ app.name }}</{{ heading }}>
         <span class="card-category">{{ app.category[page.lang] }}</span>

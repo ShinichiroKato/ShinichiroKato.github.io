@@ -260,6 +260,7 @@ ul {
 */
 
 .app-icon {
+  display: block;
   border-radius: 26.5%;
   box-shadow: 0 0 0 1px var(--card-line);
 }
@@ -353,6 +354,11 @@ ul {
 
 .badge {
   margin-top: 1.25rem;
+}
+
+/* ライトとダークで画像を切り替える picture は、中の画像の代わりに並ぶ。行の高さで画像の下にすき間が出ないよう、ブロックにする */
+picture {
+  display: block;
 }
 
 .badge,
@@ -524,7 +530,7 @@ ul {
   background: var(--card-hover);
 }
 
-.card img,
+.card picture,
 .card svg {
   flex: none;
 }

@@ -1,0 +1,9 @@
+{%- comment -%}
+  slug：アプリの slug
+  size：表示する大きさ（px）
+  アイコンは飾りなので読み上げない（名前を文字で出す）。
+{%- endcomment -%}
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="/apps/{{ include.slug }}/icon-dark.png">
+  <img class="app-icon" src="/apps/{{ include.slug }}/icon.png" alt="" width="{{ include.size }}" height="{{ include.size }}">
+</picture>
