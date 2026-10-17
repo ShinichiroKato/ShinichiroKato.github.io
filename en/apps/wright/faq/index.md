@@ -126,7 +126,7 @@ Yes. The first time you open Wright after updating, it brings over your bookmark
 
 ### Why do some bookmarks or searches appear twice?
 
-This can happen when you update from an earlier version on two devices. Delete the duplicates.
+This can happen after iCloud starts syncing, if you updated from an earlier version on two or more devices. In version 3.0.5 and later, bookmarks with the same title and URL are combined into one automatically. Searches with the same text are also combined into one automatically.
 
 ### Why does a keyword from an earlier version get searched as text?
 
