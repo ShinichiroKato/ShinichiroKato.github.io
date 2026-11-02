@@ -20,3 +20,11 @@
   subtitle:
     ja: 今いる場所を、カレンダーに記録
     en: Check in to your calendar
+- slug: yomu
+  name: Yomu
+  category:
+    ja: RSSリーダー
+    en: RSS Reader
+  subtitle:
+    ja: 好きなサイトを好きなだけ
+    en: All the sites you love
