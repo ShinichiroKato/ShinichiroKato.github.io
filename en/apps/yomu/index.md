@@ -5,7 +5,7 @@ title: Yomu
 description: Read what’s new from your favorite news sites and blogs, all in one list.
 ---
 
-Yomu is an RSS reader. When you open an article, Yomu extracts the article text from its page and shows it.
+Yomu is an RSS reader app. When you open an article, Yomu extracts the article text from its page and shows it.
 
 ## Key Features
 

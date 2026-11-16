@@ -23,8 +23,8 @@
 - slug: yomu
   name: Yomu
   category:
-    ja: RSSリーダー
-    en: RSS Reader
+    ja: RSSリーダーアプリ
+    en: RSS Reader App
   app_store_id: "6819745789"
   subtitle:
     ja: 好きなサイトを好きなだけ
